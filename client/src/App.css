@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+
+/* font-family: "Josefin Sans", sans-serif; */
+/* * {
+    
+     font-family: "Montserrat", sans-serif;
+} */
+
+.QuoteLines{
+    font-family: "Cinzel Decorative", serif;
+}
+.subtextLines{
+    font-family: "Crimson Pro", serif;
+}
+.bodytext{
+    font-family: "Montserrat", sans-serif;
+    /* font-family: "Josefin Sans", sans-serif;  */
+
+}
+
+.mid_website_banner:hover .mid_banner_text{
+    opacity: 1;
+    background-color: rgba(91, 90, 90, 0.781);
+    transition: all 0.5s ease-in-out;
+}   
+.bttn:hover{
+    box-shadow:inset 300px 0 0 0 white;
+    color: black;
+    transition: all ease 0.9s;
+    border:1px solid black;
+    background-color: #efefef;
+}
+
+
+.productCardHeading::after{
+    content: '';
+    height: 13px;
+    width: 13px;
+    position: absolute;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: rgb(145, 110, 23);
+    border-radius: 100%;
+}
+.productCardHeading::before{
+    content: '';
+    height: 13px;
+    width: 13px;
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: rgb(145, 110, 23);
+
+    border-radius: 100%;
+}
