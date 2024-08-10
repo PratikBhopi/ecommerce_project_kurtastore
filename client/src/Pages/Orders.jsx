@@ -76,16 +76,17 @@ const Orders = () => {
                             <div>
                                 <div className='h-10 w-full'></div>
                                 <div className='w-full ss:pl-10 pl-5 s:pl-20 QuoteLines font-[600]  text-[20px] '> My Orders</div>
-                                <div className='pt-10 px-5  s:px-[15vw] '>
+                                <div className='pt-10 px-5  s:px-[14vw]'>
                                     {
                                         allOrders.map(order => {
                                             return <div className='w-full s:px-20 ss:px-10 px-4 s:py-10  py-4 my-3 bg-white border rounded-[20px] ' key={order.USER_ORDER_ID}>
                                                 <div className='font-[600] w-full my-2 s:text-[16px] text-[12px]'>Order ID:  {order.USER_ORDER_ID}</div>
+                                                <div className='w-full ss:flex ss:justify-between ss:flex-wrap'>
                                                 {
                                                     order.ITEMS.map(item => {
-                                                        return <div key={item.product_id} className='w-full my-3 rounded-[12px] s:rounded-[20px] overflow-hidden  border shadow-sm flex'>
+                                                        return <div key={item.product_id} className='ss:w-[48%] w-[100%] my-3  rounded-[12px] s:rounded-[20px] overflow-hidden  border shadow-sm flex'>
                                                             <div>
-                                                                <img className='w-[130px]' src={item.Product_url} alt="" />
+                                                                <img className='ss:w-[130px] w-[100px]' src={item.Product_url} alt="" />
                                                             </div>
                                                             <div className='pl-4 pt-3 text-[14px]'>
                                                                 <div className='ss:text-[16px] text-[14px] font-[500] '>{item.product_name}</div>
@@ -97,6 +98,8 @@ const Orders = () => {
                                                     })
 
                                                 }
+                                                </div>
+
                                                 <div className='w-full '>
                                                     <div className='px-3'>
                                                         <h1 className='font-[600]'>Delivery Address:</h1>
