@@ -76,7 +76,7 @@ const Orders = () => {
                             <div>
                                 <div className='h-10 w-full'></div>
                                 <div className='w-full ss:pl-10 pl-5 s:pl-20 QuoteLines font-[600]  text-[20px] '> My Orders</div>
-                                <div className='pt-10 px-5 min:h-[80vh]  s:px-[14vw]'>
+                                <div className='pt-10 px-5 min:h-[80vh] bg-red-500  s:px-[14vw]'>
                                     {
                                         allOrders.map(order => {
                                             return <div className='w-full s:px-20 ss:px-10 px-4 s:py-10  py-4 my-3 bg-white border rounded-[20px] ' key={order.USER_ORDER_ID}>
