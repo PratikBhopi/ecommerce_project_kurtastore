@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
     <div className='w-full text-[14px] font-[500] border border-black px-3 py-4'>
     Introduction<br />
 
-Welcome to Aawara Ethnics. This Privacy Policy explains how we collect, use, and share information about you when you visit our website, make a purchase, or otherwise interact with us. We are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner.<br />
+Welcome to Karma Threadss. This Privacy Policy explains how we collect, use, and share information about you when you visit our website, make a purchase, or otherwise interact with us. We are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner.<br />
 
 
 Information We Collect<br />
@@ -79,13 +79,13 @@ We may update our Privacy Policy from time to time. Any changes will be posted o
 Contact Us:
 If you have any questions or concerns regarding this Privacy Policy, please contact us at:
 <br />
-Aawara Ethnics,
+Karma Threads,
 <br />
-Chauta Bazar , near Bhat Hospital, <br />
-Surat 395003 <br />
-aawarathnic@gmail.com
+{/* , <br /> */}
+Pune -401215 <br />
+karamthreads@gmail.com
 <br />
-Contact No.:+91 7499219587
+Contact No.:+91 XXXXXXXXXX
     </div>
     </div>
   )

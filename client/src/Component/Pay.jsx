@@ -42,7 +42,7 @@ const Pay = ({cartItems,cartTotalPrice,CARTID ,off}) => {
             key: import.meta.env.RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
             amount: amount.toString(),
             currency:currency,
-            name: 'Aawara Ethnic',
+            name: 'Karma Threads',
             description: 'Test transaction',
             order_id: orderID,
             handler: async (response) => {

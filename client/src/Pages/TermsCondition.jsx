@@ -6,7 +6,7 @@ const TermsCondition = () => {
             <div className='w-full border border-black text-[14px] px-3 py-3 font-[500]'>
                 <h1 className='text-[20px] font-[600]  mb-5'>Terms and Conditions</h1>
 
-                Welcome to Aawara Ethnic, your ultimate destination for exquisite kurtas and ethnic wear. By accessing our website and making a purchase, you agree to comply with and be bound by the following terms and conditions of use. Please read these terms carefully before placing your order. <br/>
+                Welcome to Karma Threads, your ultimate destination for exquisite kurtas and ethnic wear. By accessing our website and making a purchase, you agree to comply with and be bound by the following terms and conditions of use. Please read these terms carefully before placing your order. <br/>
 
                 1.Use of Website: The content of this website is for your general information and use only. It is subject to change without notice.<br/>
 
@@ -20,15 +20,15 @@ const TermsCondition = () => {
 
                 6.Returns and Exchanges: We want you to be satisfied with your purchase. Please refer to our Returns and Exchanges Policy for detailed information on returning or exchanging items purchased through our website.<br/>
 
-                7.Intellectual Property: All content included on this website, such as text, graphics, logos, images, and software, is the property of Aawara Ethnic or its content suppliers and is protected by copyright laws.<br/>
+                7.Intellectual Property: All content included on this website, such as text, graphics, logos, images, and software, is the property of Karma Threads or its content suppliers and is protected by copyright laws.<br/>
 
-                8.Limitation of Liability: Aawara Ethnic shall not be liable for any special or consequential damages that result from the use of, or the inability to use, the materials on this site or the performance of the products.<br/>
+                8.Limitation of Liability: Karma Threads shall not be liable for any special or consequential damages that result from the use of, or the inability to use, the materials on this site or the performance of the products.<br/>
 
                 9.Governing Law: These terms and conditions are governed by and construed in accordance with the laws of India. You agree to submit to the exclusive jurisdiction of the courts in Surat, Gujarat, India.<br/>
 
-               10. Changes to Terms: Aawara Ethnic reserves the right to revise these terms and conditions at any time without prior notice. By using this website, you agree to be bound by the current version of these terms and conditions.<br/><br/>
+               10. Changes to Terms: Karma Threads reserves the right to revise these terms and conditions at any time without prior notice. By using this website, you agree to be bound by the current version of these terms and conditions.<br/><br/>
 
-                By using our website, you signify your acceptance of these terms and conditions. If you do not agree to these terms, please do not use our website. For any questions regarding these terms and conditions, please contact us at aawaraethnic@gmail.com.<br/>
+                By using our website, you signify your acceptance of these terms and conditions. If you do not agree to these terms, please do not use our website. For any questions regarding these terms and conditions, please contact us at xxxxxx@gmail.com.<br/>
             </div>
 
         </div>

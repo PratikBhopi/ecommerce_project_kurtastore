@@ -18,7 +18,7 @@ const AboutUs = () => {
                                     About Us
                                 </h2>
                                 <p className="mt-4 text-lg text-gray-600">
-                                    Welcome to Aawara Ethnic, where elegance meets tradition. Nestled in the heart of Surat, we specialize in offering a diverse range of meticulously crafted kurtas and ethnic wear that blend timeless traditions with contemporary styles.
+                                    Welcome to Karma Threads, where elegance meets tradition. Nestled in the heart of Surat, we specialize in offering a diverse range of meticulously crafted kurtas and ethnic wear that blend timeless traditions with contemporary styles.
                                 </p>
                             </div>
                             <div className="mt-10">
@@ -31,16 +31,16 @@ const AboutUs = () => {
                                             Our passion for quality craftsmanship and dedication to showcasing the rich heritage of Indian textiles drive us to curate collections that resonate with authenticity and charm.
                                         </div>
                                         <div className="mt-4 text-lg text-gray-600">
-                                            At Aawara Ethnic, we believe in celebrating individuality through fashion that speaks volumes about cultural pride and personal expression. Each piece in our collection is carefully selected to reflect the essence of Indian craftsmanship, ensuring that every customer finds something that resonates with their unique sense of style.
+                                            At Karma Threads, we believe in celebrating individuality through fashion that speaks volumes about cultural pride and personal expression. Each piece in our collection is carefully selected to reflect the essence of Indian craftsmanship, ensuring that every customer finds something that resonates with their unique sense of style.
                                         </div>
                                         <div className="mt-4 text-lg text-gray-600">
-                                            Our commitment extends beyond just providing beautiful clothing; we strive to create a seamless shopping experience where quality, reliability, and customer satisfaction are paramount. Whether you're searching for the perfect kurta for a festive occasion or seeking to enrich your wardrobe with timeless ethnic wear, Aawara Ethnic promises to exceed your expectations.
+                                            Our commitment extends beyond just providing beautiful clothing; we strive to create a seamless shopping experience where quality, reliability, and customer satisfaction are paramount. Whether you're searching for the perfect kurta for a festive occasion or seeking to enrich your wardrobe with timeless ethnic wear, Karma Threads promises to exceed your expectations.
                                         </div>
                                         <div className="mt-4 text-lg text-gray-600">
-                                            Explore our online store and discover the allure of traditional Indian attire reinvented for the modern discerning individual. Join us in celebrating the beauty of cultural diversity and embark on a journey of sartorial elegance with Aawara Ethnic.
+                                            Explore our online store and discover the allure of traditional Indian attire reinvented for the modern discerning individual. Join us in celebrating the beauty of cultural diversity and embark on a journey of sartorial elegance with Karma Threads.
                                         </div>
                                         <div className="mt-4 text-lg text-gray-600">
-                                            For any inquiries or assistance, please don't hesitate to reach out to us at <a href="mailto:aawaraethnic@gmail.com" className="text-blue-500">aawaraethnic@gmail.com</a> <p>Contact:- +91 7499219587</p> or visit us at Chauta Bazar, near Bhat Hospital, Surat - 390053.
+                                            For any inquiries or assistance, please don't hesitate to reach out to us at <a href="mailto:aawaraethnic@gmail.com" className="text-blue-500">karmathreads@gmail.com</a> <p>Contact:- +91 XXXXXXXXXX</p> or visit us at KarmaThreads .. Pune - 401215.
                                         </div>
                                     </div>
                                 </div>

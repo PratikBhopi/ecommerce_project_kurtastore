@@ -6,7 +6,7 @@ const ShippinPolicy = () => {
             <div className='w-3/4 border border-black px-3 text-[14px] font-[500] py-3'>
                 {/* <pre className='w-screen'> */}
                 Shipping Information <br />
-                At Aawara Ethnic, we strive to deliver your orders in a timely and efficient manner. Here is everything you need to know about our shipping process:
+                At Karma Threads, we strive to deliver your orders in a timely and efficient manner. Here is everything you need to know about our shipping process:
                 <br />
                 Shipping Carrier<br />
                 We have partnered with DTDC to ensure your orders are delivered safely and promptly.
@@ -29,12 +29,12 @@ const ShippinPolicy = () => {
                 Contact Us<br />
                 If you have any questions about our shipping policy, please contact us at:
                 <br />
-                Aawara Ethnic<br />
-                Chauta Bazar , near Bhat Hospital, <br />
-                Surat 395003 <br />
-                aawarathnic@gmail.com
+                Karma Threads<br />
+                Pune - 401215 <br />
+                 {/* <br /> */}
+                karamthreads@gmail.com
                 <br />
-                Contact No.: +91 7499219587
+                Contact No.: +91 xxxxxxxxxx
                 {/* </pre> */}
             </div>
         </div>

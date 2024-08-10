@@ -96,7 +96,7 @@ const Cards = ({ productsdata}) => {
           </div>
         </div>
         <div className='w-full  text-[11px] px-[4px] text-black flex flex-col justify-center items-center  ss:text-[16px]   '>
-          <div className='uppercase ss:font-[700] opacity-[0.7]  font-[800]'>Aawara Ethnic </div>
+          <div className='uppercase ss:font-[700] opacity-[0.7]  font-[800]'>Karma Threads </div>
           <div className='uppercase  text-center w-full whitespace-nowrap truncate  text-[12px] text-[#b0b0b0] font-[300]'>{productsdata.Description}</div>
           <div className=' flex gap-1 items-center'>
             <div className=' line-through ss:text-[15px] text-red-600 text-[12px] opacity-[0.6]'> ₹ {productsdata.Price}</div>
