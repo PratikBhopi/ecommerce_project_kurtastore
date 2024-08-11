@@ -34,7 +34,7 @@ const Header = () => {
         <div className='flex justify-between w-full'>
 
           <div className='flex  gap-5 items-center text-[16px]'>
-            <div className='subtextLines text-yellow-600  px-2 py-2 ss:text-[25px]   text-[18px]  md:block'><Link to={'/home'}><span className='QuoteLines'>K</span>arma Threads</Link></div>
+            <div className='subtextLines text-yellow-600  px-2 py-2 ss:text-[25px]   text-[18px]  md:block'><Link to={'/home'}><span className='QuoteLines'>K</span>arma <span className='QuoteLines'>T</span>hreads</Link></div>
             <div className='hover:underline transition-all ease-in hidden md:block uppercase  duration-500'><Link to={'/home'}>Home</Link></div>
             <div className='hover:underline transition-all ease-in hidden md:block uppercase duration-500'><Link to={'/aboutus'}>About Us</Link></div>
             <div className='hover:underline transition-all ease-in hidden md:block uppercase duration-500'><Link to={'/shop'}>Shop</Link></div>

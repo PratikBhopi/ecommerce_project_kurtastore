@@ -5,13 +5,14 @@ import CardsContainer from '../Component/CardsContainer'
 import { Link, useNavigate } from 'react-router-dom'
 import {UserContextApi} from '../context/UserContext'
 import Cards from '../Component/Cards'
+import CartAnimation from '../Component/CarAnimation'
 
 
 const Home = () => {
 
     const navigate = useNavigate()
 
-    const {itemsData} = useContext(UserContextApi)
+    const {itemsData,homeani} = useContext(UserContextApi)
 
 
 
@@ -22,7 +23,14 @@ const Home = () => {
         <>
 
             <div className='fixed w-screen z-[9999] shadow-md'><Header /></div>
-            <div className=' bg-[#EFEFEF] h-screen w-screen  overflow-x-hidden'>
+            <div className=' bg-[#EFEFEF] h-screen w-screen relative overflow-x-hidden'>
+            {
+                homeani 
+                ?
+                <CartAnimation />
+                :
+                ''
+            }
             <div className='w-screen bg-red-400 h-[50px] ss:h-[60px] sl:h-[65px] f:h-[75px]'></div>
             <div className='w-screen bg-black s:py-3 pt-4 pb-1 text-white s:text-[16px] text-[10px] text-center QuoteLines'>"A dash of tradition in every thread"</div>
 

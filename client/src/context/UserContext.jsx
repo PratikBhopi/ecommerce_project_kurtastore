@@ -31,14 +31,14 @@ export const UserContextProvider = ({ children }) => {
     }
 
     const [itemsData, setItemsData] = useState([])
-
+    const [homeani,setHomeani] = useState(true)
     const getPosts = async () => {
+      setHomeani(true)
         try {
             const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/getProducts`)
             const data = await response.json()
-            // console.log(data)
             setItemsData(data.products)
-
+            setHomeani(false);
         } catch (error) {
             console.log(error)
         }
@@ -100,7 +100,7 @@ export const UserContextProvider = ({ children }) => {
 
 
     return (
-        <UserContextApi.Provider value={{ isAllowedToCheckout, setIsAllowedToCheckout,setLoggedIn, isLoggedIn, checkUser, setItemsData,itemsData, totalCartItems ,isOpen,onOpen,onClose,cartItems,getCartProduct,cartTotalPrice}}>
+        <UserContextApi.Provider value={{ isAllowedToCheckout, homeani,setIsAllowedToCheckout,setLoggedIn, isLoggedIn, checkUser, setItemsData,itemsData, totalCartItems ,isOpen,onOpen,onClose,cartItems,getCartProduct,cartTotalPrice}}>
             {children}
         </UserContextApi.Provider>
     )
