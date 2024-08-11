@@ -28,7 +28,7 @@ const TermsCondition = () => {
 
                10. Changes to Terms: Karma Threads reserves the right to revise these terms and conditions at any time without prior notice. By using this website, you agree to be bound by the current version of these terms and conditions.<br/><br/>
 
-                By using our website, you signify your acceptance of these terms and conditions. If you do not agree to these terms, please do not use our website. For any questions regarding these terms and conditions, please contact us at xxxxxx@gmail.com.<br/>
+                By using our website, you signify your acceptance of these terms and conditions. If you do not agree to these terms, please do not use our website. For any questions regarding these terms and conditions, please contact us at karmathreads@gmail.com.<br/>
             </div>
 
         </div>

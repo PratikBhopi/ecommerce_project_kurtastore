@@ -52,7 +52,7 @@ const SuccessfulOrder = () => {
         </div>
 
       </div>
-      <p className='text-[13px] absolute bottom-5 left-5 px-5 text-center'>🟢 If you have any questions or concerns, please contact our support team at aawaraethnic@gmail.com or call us at +91 7499219587.</p>
+      <p className='text-[13px] absolute bottom-5 left-5 px-5 text-center'>🟢 If you have any questions or concerns, please contact our support team at karmathreads@gmail.com or call us at +91 XXXXXXXXXX.</p>
 
     </div>
   )
