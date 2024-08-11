@@ -24,7 +24,11 @@ const AboutUs = () => {
                             <div className="mt-10">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div className="flex items-center justify-center">
-                                        <img className="h-80 rounded-lg shadow-lg object-cover" src="/aawaralogo.jpg" alt="About Us Image" />
+                                        {/* <img className="h-80 rounded-lg shadow-lg object-cover" src="/aawaralogo.jpg" alt="About Us Image" /> */}
+                                        <div className='h-80 bg-gradient-to-b  QuoteLines text-yellow-800 text-[90px] font-[500] w-full shadow-lg flex justify-center flex-col items-center '>
+                                            <div className='translate-y-10 -translate-x-10'>K</div>
+                                            <div className='-translate-y-14 translate-x-6'>T</div>
+                                        </div>
                                     </div>
                                     <div>
                                         <div className="text-lg text-gray-600">
