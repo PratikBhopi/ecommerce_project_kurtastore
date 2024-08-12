@@ -88,7 +88,7 @@ const Login = () => {
             </div>
           </Form>
         </Formik>
-        <div className='w-full text-[13px] pb-3 text-stone-800  px-4 text-end'><Link to={'/login/forget-password'} className='hover:underline opacity-[0.9] hover:text-stone-200'>Forgot Password?</Link></div>
+        {/* <div className='w-full text-[13px] pb-3 text-stone-800  px-4 text-end'><Link to={'/login/forget-password'} className='hover:underline opacity-[0.9] hover:text-stone-200'>Forgot Password?</Link></div> */}
         <div className=' px-4 text-[15px] text-stone-700 -translate-y-2 hover:text-blue-700'> <Link to={'/register'}>Don't have an account?</Link></div>
         </div>
       </div >
