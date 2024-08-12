@@ -136,10 +136,10 @@ const BuyProduct = () => {
 
 
 
-          <div className='md:pl-[70px] px-2 md:my-0 mt-10  ss:w-fit w-full ss:text-left   text-stone-900'>
+          <div className='md:pl-[70px] px-2 md:my-0 mt-10  ss:w-[40vw] w-full ss:text-left   text-stone-900'>
 
-            <div className='md:text-[28px] text-[22px] tracking-[1px] md:tracking-[4px] font-[600] uppercase'> {ItemData.Product_name}</div>
-            <div className='ss:text-[20px] text-[15px]  tracking-[1px] mb-2'>{ItemData.Description}</div>
+            <div className='md:text-[24px] text-[22px] tracking-[1px] md:tracking-[4px] font-[600] uppercase'> {ItemData.Product_name}</div>
+            <div className='ss:text-[17px] text-[13px]  tracking-[1px] mb-2'>{ItemData.Description}</div>
 
             <div className='text-[24px]  tracking-[2px] font-[700]'> { '₹' + ItemData.Discounted_Price}  <span className='text-[14px] tracking-[0] opacity-[0.6] font-[400] my-2 '>MRP Inclusive Of all Taxes</span> </div>
             <div className='text-[18px] font-[500] opacity-[0.7] '><span className='line-through'>{'₹' + ItemData.Price}</span></div>
