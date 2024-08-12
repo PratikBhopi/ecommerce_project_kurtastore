@@ -55,7 +55,6 @@ const Login = () => {
           toastStyle={{ backgroundColor: "white", color: "black" }} hideProgressBar={true} />
 
         <div className=' backdrop:blur-lg  shadow-md shadow-[#4747479c] px-10 py-6 md:w-[30vw] bg-white text-black '>
-
         <Formik
          initialValues={{ email: '', password: '' }}
          validationSchema={validationSchema}

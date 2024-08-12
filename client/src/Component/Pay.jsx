@@ -64,9 +64,9 @@ const Pay = ({cartItems,cartTotalPrice,CARTID ,off}) => {
             }
             },
             prefill: {
-                name: '',
-                email: 'pkbhopi@gmail.com',
-                contact: '9999999999'
+                name:'User',
+                email: 'user@gmail.com',
+                contact: 'XXXXXXXXXX'
             },
             notes: {
                 address: 'Razorpay Corporate Office'
