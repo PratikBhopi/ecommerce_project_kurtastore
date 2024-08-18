@@ -9,7 +9,7 @@ import Cards from '../Component/Cards'
 import Footer from '../Component/Footer'
 import CardsContainer from '../Component/CardsContainer'
 import { GoLink } from "react-icons/go";
-import { Helmet } from 'react-helmet-async'
+import { Helmet } from 'react-helmet'
 
 const BuyProduct = () => {
   const { onOpen, isOpen } = useContext(UserContextApi)
@@ -98,9 +98,15 @@ const BuyProduct = () => {
 
   return (
     <>
-      <Helmet>
-        <script type="application/ld+json">
-          {`
+
+      <div className='w-screen fixed z-[990]'><Header /></div>
+
+      <ToastContainer newestOnTop={true} autoClose={800}
+        toastStyle={{ backgroundColor: "white", color: "black" }} hideProgressBar={true} />
+      <div className='w-screen relative min-h-screen  overflow-hidden'>
+        <Helmet>
+          <script type="application/ld+json">
+            {`
       {
         "@context": "https://karmathreads.vercel.app",
         "@type": "Product",
@@ -114,13 +120,10 @@ const BuyProduct = () => {
         }
       }
     `}
-        </script>
-      </Helmet>
-      <div className='w-screen fixed z-[990]'><Header /></div>
-
-      <ToastContainer newestOnTop={true} autoClose={800}
-        toastStyle={{ backgroundColor: "white", color: "black" }} hideProgressBar={true} />
-      <div className='w-screen relative min-h-screen  overflow-hidden'>
+          </script>
+          <meta charSet="utf-8" />
+          <title>Karma Threads- {`${ItemData.Product_name}`}</title>
+        </Helmet>
         {
           isOpen && <SizeChart />
         }

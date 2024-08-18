@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { UserContextApi } from '../context/UserContext'
 import Cards from '../Component/Cards'
 import CartAnimation from '../Component/CarAnimation'
-import { Helmet } from 'react-helmet-async'
+import { Helmet } from 'react-helmet'
 
 const Home = () => {
 
