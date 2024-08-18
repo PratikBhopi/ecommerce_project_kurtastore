@@ -9,6 +9,7 @@ import Cards from '../Component/Cards'
 import Footer from '../Component/Footer'
 import CardsContainer from '../Component/CardsContainer'
 import { GoLink } from "react-icons/go";
+import { Helmet } from 'react-helmet-async'
 
 const BuyProduct = () => {
   const { onOpen, isOpen } = useContext(UserContextApi)
@@ -22,7 +23,7 @@ const BuyProduct = () => {
   const [subImg, setSubImg] = useState([])
   const [mainImg, setMainImg] = useState('')
 
-  
+
 
   const fetchProductData = async (id) => {
 
@@ -89,7 +90,7 @@ const BuyProduct = () => {
   }, [id])
 
   const shareLink = `https://aawarastore.in/buyproduct/${id}`
-  const copyLInk = ()=>{
+  const copyLInk = () => {
     navigator.clipboard.writeText(shareLink)
     toast('Link Copied')
     return
@@ -97,10 +98,28 @@ const BuyProduct = () => {
 
   return (
     <>
+      <Helmet>
+        <script type="application/ld+json">
+          {`
+      {
+        "@context": "https://karmathreads.vercel.app",
+        "@type": "Product",
+        "name": "${ItemData.Product_name}",
+        "image": "${ItemData.Product_img_url}",
+        "description": "${ItemData.Description}",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": "${ItemData.Discounted_Price}",
+        }
+      }
+    `}
+        </script>
+      </Helmet>
       <div className='w-screen fixed z-[990]'><Header /></div>
 
       <ToastContainer newestOnTop={true} autoClose={800}
-          toastStyle={{ backgroundColor: "white", color: "black" }} hideProgressBar={true}/>
+        toastStyle={{ backgroundColor: "white", color: "black" }} hideProgressBar={true} />
       <div className='w-screen relative min-h-screen  overflow-hidden'>
         {
           isOpen && <SizeChart />
@@ -141,19 +160,19 @@ const BuyProduct = () => {
             <div className='md:text-[24px] text-[22px] tracking-[1px] md:tracking-[4px] font-[600] uppercase'> {ItemData.Product_name}</div>
             <div className='ss:text-[17px] text-[13px]  tracking-[1px] mb-2'>{ItemData.Description}</div>
 
-            <div className='text-[24px]  tracking-[2px] font-[700]'> { '₹' + ItemData.Discounted_Price}  <span className='text-[14px] tracking-[0] opacity-[0.6] font-[400] my-2 '>MRP Inclusive Of all Taxes</span> </div>
+            <div className='text-[24px]  tracking-[2px] font-[700]'> {'₹' + ItemData.Discounted_Price}  <span className='text-[14px] tracking-[0] opacity-[0.6] font-[400] my-2 '>MRP Inclusive Of all Taxes</span> </div>
             <div className='text-[18px] font-[500] opacity-[0.7] '><span className='line-through'>{'₹' + ItemData.Price}</span></div>
-           
+
             <div className='h-[1px] w-full  bg-stone-300 mb-3 mt-4'></div>
             <div className='flex w-full'>
               <div className='my-2 '>
                 {/* colors */}
                 {
-                subImg.map((col,index)=>{
+                  subImg.map((col, index) => {
 
-                  return <div onClick={()=>changeImg(col)} key={index} style={{backgroundColor:`${col.hexcode}`,outline:activeIn == col.hexcode ? '2px solid #040304eb': 'none'}} className="px-[14px] py-1 inline mx-1 border-2 border-white rounded-full"></div>
-                })
-              }
+                    return <div onClick={() => changeImg(col)} key={index} style={{ backgroundColor: `${col.hexcode}`, outline: activeIn == col.hexcode ? '2px solid #040304eb' : 'none' }} className="px-[14px] py-1 inline mx-1 border-2 border-white rounded-full"></div>
+                  })
+                }
               </div>
             </div>
 
@@ -171,9 +190,9 @@ const BuyProduct = () => {
             </div>
             <div className='cursor-pointer' onClick={onOpen}>Size Chart</div>
             <div className='h-5'></div>
-            <div  className='w-full flex justify-between flex-row-reverse'>
-            <div onClick={()=>copyLInk()} className='w-[18%] flex justify-center items-center border'><GoLink className='scale-[1.3]' /></div>
-            <div onClick={() => addtoCart(ItemData.PRODUCT_id, size, activeIn, mainImg)} className='cursor-pointer w-[80%] md:py-3 py-3 tracking-[5px] md:text-[20px] text-center bg-[#040303eb] text-white'>Add To Cart</div>
+            <div className='w-full flex justify-between flex-row-reverse'>
+              <div onClick={() => copyLInk()} className='w-[18%] flex justify-center items-center border'><GoLink className='scale-[1.3]' /></div>
+              <div onClick={() => addtoCart(ItemData.PRODUCT_id, size, activeIn, mainImg)} className='cursor-pointer w-[80%] md:py-3 py-3 tracking-[5px] md:text-[20px] text-center bg-[#040303eb] text-white'>Add To Cart</div>
             </div>
           </div>
 
