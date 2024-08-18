@@ -1,38 +1,42 @@
-import React , {useContext,useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../Component/Header'
 import Footer from '../Component/Footer'
 import CardsContainer from '../Component/CardsContainer'
 import { Link, useNavigate } from 'react-router-dom'
-import {UserContextApi} from '../context/UserContext'
+import { UserContextApi } from '../context/UserContext'
 import Cards from '../Component/Cards'
 import CartAnimation from '../Component/CarAnimation'
-
+import { Helmet } from 'react-helmet-async'
 
 const Home = () => {
 
     const navigate = useNavigate()
 
-    const {itemsData,homeani} = useContext(UserContextApi)
+    const { itemsData, homeani } = useContext(UserContextApi)
 
 
 
-   
+
 
 
     return (
         <>
-
+            <Helmet>
+                <title> Karma Threads</title>
+                <meta name="description" content="Best Ethnic Kurta Wear" />
+                <meta name="keywords" content={["Kurtas","Pajamas","Ethnic Wear","Aawara Ethnic"]} />
+            </Helmet>
             <div className='fixed w-screen z-[9999] shadow-md'><Header /></div>
             <div className=' bg-[#EFEFEF] h-screen w-screen relative overflow-x-hidden'>
-            {
-                homeani 
-                ?
-                <CartAnimation />
-                :
-                ''
-            }
-            <div className='w-screen bg-red-400 h-[50px] ss:h-[60px] sl:h-[65px] f:h-[75px]'></div>
-            <div className='w-screen bg-black s:py-3 pt-4 pb-1 text-white s:text-[16px] text-[10px] text-center QuoteLines'>"A dash of tradition in every thread"</div>
+                {
+                    homeani
+                        ?
+                        <CartAnimation />
+                        :
+                        ''
+                }
+                <div className='w-screen bg-red-400 h-[50px] ss:h-[60px] sl:h-[65px] f:h-[75px]'></div>
+                <div className='w-screen bg-black s:py-3 pt-4 pb-1 text-white s:text-[16px] text-[10px] text-center QuoteLines'>"A dash of tradition in every thread"</div>
 
                 <div className='md:h-[86%] sm:h-[60%] h-[60vh] w-full  relative'>
                     <div className='h-full w-full object-contain flex justify-center items-center overflow-hidden bg-black'>
@@ -60,7 +64,7 @@ const Home = () => {
                         </div>
                         <div className='flex md:w-[95vw] w-full gap-y-6 flex-wrap justify-evenly my-4'>
                             {
-                                itemsData.slice(0,4).filter(item=>item.uploaded_at== 'Latest').map(item=>{
+                                itemsData.slice(0, 4).filter(item => item.uploaded_at == 'Latest').map(item => {
                                     return <Cards animate key={item.PRODUCT_id} productsdata={item} />
                                 })
                             }
@@ -70,23 +74,23 @@ const Home = () => {
 
                 <div className='QuoteLines mid_website_banner   w-screen h-[75vh]  relative'>
 
-                    
+
                     <div className='w-screen h-full flex justify-center items-center'>
                         <div className='ss:w-[45vw]  s:block hidden'>
                             <div className='h-[14vw] rounded-[13px] flex justify-center items-center mb-6 border bg-gradient-to-tr from-orange-50 to-fuchsia-100'>
-                            <div className='text-[22px] text-center text-orange-900 w-[60%] font-[600]'>"From Casual to Festive, Find the Perfect Kurta for Every Moment!"</div>
+                                <div className='text-[22px] text-center text-orange-900 w-[60%] font-[600]'>"From Casual to Festive, Find the Perfect Kurta for Every Moment!"</div>
 
                             </div>
                             <div className='h-[14vw] w-full rounded-[13px] mt-6 flex justify-between'>
                                 <div className='h-full w-[32%] rounded-[13px] border  bg-gradient-to-tr from-orange-50 to-blue-50  shadow-md'></div>
                                 <div className='h-full w-[32%] rounded-[13px] border  bg-gradient-to-tr from-orange-50 to-blue-50  shadow-md'></div>
-                                <div className='h-full w-[32%] rounded-[13px] border  bg-gradient-to-tr from-orange-50 to-blue-50  shadow-md'></div>  
+                                <div className='h-full w-[32%] rounded-[13px] border  bg-gradient-to-tr from-orange-50 to-blue-50  shadow-md'></div>
                             </div>
                         </div>
                         <div className='ss:w-[30%] ss:ml-6 lg:w-[20%] mx-0 flex ss:bg-white bg-black justify-center  w-full'>
                             <div className='w-[90vw] ss:h-[30vw] ss:rounded-[13px] shadow-md bg-black overflow-hidden relative'>
-                                <video autoPlay muted loop  className='h-full w-full ' src="/vid1.mp4"></video>
-                                <div onClick={()=>navigate('/shop')} className='absolute ss:hidden bottom-4 text-white left-2 border border-white px-4 py-2'>Shop Now</div>
+                                <video autoPlay muted loop className='h-full w-full ' src="/vid1.mp4"></video>
+                                <div onClick={() => navigate('/shop')} className='absolute ss:hidden bottom-4 text-white left-2 border border-white px-4 py-2'>Shop Now</div>
                             </div>
                         </div>
                     </div>
@@ -95,23 +99,23 @@ const Home = () => {
                 <div className='bodytext px-auto  text-[17px] w-screen '>
                     <div className='my-10 ss:mx-10 mx-1 '>
                         <div className='  relative flex justify-center '>
-                        <h1 className='text-[22px] tracking-[3px] z-[10] bodytext  bg-[#efefef]  py-2 px-5 w-fit uppercase'>our products</h1>
+                            <h1 className='text-[22px] tracking-[3px] z-[10] bodytext  bg-[#efefef]  py-2 px-5 w-fit uppercase'>our products</h1>
                             <div className='productCardHeading w-[90vw]   h-[1px] bg-yellow-600 absolute  top-1/2'></div>
                         </div>
                         <div className='flex md:w-[95vw]  w-full gap-y-6 flex-wrap justify-evenly my-4'>
                             {
-                                itemsData.slice(0,12).map(item=>{
+                                itemsData.slice(0, 12).map(item => {
                                     return <Cards key={item.PRODUCT_id} productsdata={item} />
                                 })
                             }
                             {
-                                itemsData.length % 2 != 0 
-                                ?
-                                itemsData.slice(0,1).map(item=>{
-                                    return <Cards key={item.PRODUCT_id} productsdata={item} />
-                                })
-                                :
-                                ""
+                                itemsData.length % 2 != 0
+                                    ?
+                                    itemsData.slice(0, 1).map(item => {
+                                        return <Cards key={item.PRODUCT_id} productsdata={item} />
+                                    })
+                                    :
+                                    ""
                             }
                         </div>
                     </div>

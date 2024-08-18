@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+ const mongoose = require('mongoose')
 const { USER_DATA } = require('../models/database')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
