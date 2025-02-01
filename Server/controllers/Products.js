@@ -9,20 +9,23 @@ const {v4:uuidv4} = require('uuid')
 
 // add items to cart: if cart exist push them into products array
 // add items to cart: if cart doesnot exist create a cart and then add it to the array of Products
+const addToStorage=async()=>{
+
+}
+;
 
 exports.addtoCart = async (req, res) => {
     const { token } = req.headers
     const { productid, size, activeIn, productimg } = req.body
+    console.log(token);
+    
+
     try {
         var ProductSize = size
         var productColor = activeIn
         var user_pass_token,img
         var userID = ''
         if (!size) ProductSize = 'M'
-
-        const { userId } = jwt.verify(token, process.env.JWT_KEY)
-        userID = userId
-
 
         const findProduct = await PRODUCTS_DB.findOne({ PRODUCT_id: productid })
 
@@ -34,7 +37,7 @@ exports.addtoCart = async (req, res) => {
             productColor = img.hexcode
         }
 
-        const PRODUCTID = productid + '-' + ProductSize + '-' + productColor
+        const PRODUCTID = productid + '-' + ProductSize + '-' + productColor;
         const NEW_PRODUCT = {
             Price: findProduct.Discounted_Price,
             product_id: PRODUCTID,
@@ -45,7 +48,6 @@ exports.addtoCart = async (req, res) => {
             Size: ProductSize,
             Color: productColor,
         }
-        // console.log(NEW_PRODUCT)
         // check if user cart does not  exist create one..
         if (!findUserCart) {
             const createCart = await USER_CART({

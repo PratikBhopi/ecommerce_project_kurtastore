@@ -39,12 +39,14 @@ const Cards = ({ productsdata}) => {
       return 
     }
     setIsPortalOpen(true)
+    
+
     try {
       const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/addtoCart`, {
         method: 'POST',
         headers: {
           'Content-type': 'Application/json',
-          token: localStorage.getItem('token')
+          token: localStorage.getItem('token'),
         },
         body: JSON.stringify({ productid, size, productimg })
       })
@@ -58,8 +60,33 @@ const Cards = ({ productsdata}) => {
     }
   }
 
-  const addtoStorage = async()=>{
+  const addtoStorage = async (productid, size, productimg) => {
+    // console.log(productimg,size,productid)
+    const avail = checkAvailabiltiy(productimg)
+    if(avail) {
+      toast('Out of stock!')
+      return 
+    }
+    setIsPortalOpen(true)
     
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/addtoCart`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'Application/json',
+          token: 'unknownuser',
+        },
+        body: JSON.stringify({ productid, size, productimg })
+      })
+      const data = await response.json()
+      if (data.status == 200) {
+        getCartProduct()
+        setIsPortalOpen(false)
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const notify = () => {
@@ -85,8 +112,8 @@ const Cards = ({ productsdata}) => {
         <ToastContainer newestOnTop={true} autoClose={1000}
           toastStyle={{ backgroundColor: "white", color: "black" }} hideProgressBar={true} />
         <div className='f:w-[300px] f:h-[448px] s:w-[270px] s:h-[404px] sl:w-[220px] sl:h-[328px] border  border-b-0 border-[#2323233c] ss:w-[190px] ss:h-[280px] w-[160px] h-[240px] rounded-[0px]  overflow-hidden relative'>
-          <div className='bg-[#1D0100]  ss:flex justify-center  text-white  absolute right-1 top-1 ss:right-2 ss:top-2  z-[99]  rounded-[6px]   text-[10px] ss:text-[13px] py-3 px-2 ss:w-[14%] cursor-pointer' onClick={() => { isLoggedIn ? addtoCart(productsdata.PRODUCT_id, size, productsdata.Product_img_url) : addtoStorage()}}><FaBagShopping className='scale-[1.2]' /></div>
-          {/* <div className='bg-[#1D0100]  ss:flex justify-center  text-white  absolute right-1 top-1 ss:right-2 ss:top-2  z-[99]  rounded-[6px]   text-[10px] ss:text-[13px] py-3 px-2 ss:w-[14%] cursor-pointer' onClick={() => {  addtoCart(productsdata.PRODUCT_id, size, productsdata.Product_img_url) : notify() }}><FaBagShopping className='scale-[1.2]' /></div> */}
+          {/* <div className='bg-[#1D0100]  ss:flex justify-center  text-white  absolute right-1 top-1 ss:right-2 ss:top-2  z-[99]  rounded-[6px]   text-[10px] ss:text-[13px] py-3 px-2 ss:w-[14%] cursor-pointer' onClick={() => { isLoggedIn ? addtoCart(productsdata.PRODUCT_id, size, productsdata.Product_img_url) : addtoStorage()}}><FaBagShopping className='scale-[1.2]' /></div> */}
+          <div className='bg-[#1D0100]  ss:flex justify-center  text-white  absolute right-1 top-1 ss:right-2 ss:top-2  z-[99]  rounded-[6px]   text-[10px] ss:text-[13px] py-3 px-2 ss:w-[14%] cursor-pointer' onClick={() => {  addtoCart(productsdata.PRODUCT_id, size, productsdata.Product_img_url) }}><FaBagShopping className='scale-[1.2]' /></div>
           <img  className='w-full bg-stone-200 hover:scale-[1.01] transition-all ease-out duration-[0.9s] h-full z-50  ' src={productsdata.Product_img_url} alt='Network!!' />
           <div onClick={()=>buyProduct(productsdata.PRODUCT_id)} className='absolute cursor-pointer bottom-2 w-full   px-3 '>
             <div ref={cols} className='w-full text-end bg-[#ffffff4a] rounded-full backdrop-blur-sm px-1 py-1  ss:px-2 ss:py-2 relative'>

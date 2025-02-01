@@ -21,8 +21,6 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-// cb means callback
-
 
 
 app.use('/user',UserRouter)
