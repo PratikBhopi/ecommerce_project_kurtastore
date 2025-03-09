@@ -17,14 +17,20 @@ const addToStorage=async()=>{
 exports.addtoCart = async (req, res) => {
     const { token } = req.headers
     const { productid, size, activeIn, productimg } = req.body
-    console.log(token);
+    // console.log(token);
     
 
     try {
+
         var ProductSize = size
         var productColor = activeIn
         var user_pass_token,img
         var userID = ''
+        if(token) {
+            const {userId}=jwt.verify(token,process.env.JWT_KEY);
+            userID=userId;
+        }
+
         if (!size) ProductSize = 'M'
 
         const findProduct = await PRODUCTS_DB.findOne({ PRODUCT_id: productid })
