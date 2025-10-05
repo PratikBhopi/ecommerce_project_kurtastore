@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { ADMIN_DB } = require('../models/adminDB')
+const { ADMIN_DB } = require('../../models/adminDB')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const AdminRouter = require('../routes/AdminRoutes')
 
 
 const ADMIN_CREDENTIALS = new mongoose.Schema({

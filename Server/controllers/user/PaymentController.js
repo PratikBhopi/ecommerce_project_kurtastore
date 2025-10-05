@@ -1,8 +1,11 @@
 require('dotenv').config()
 const Razorpay = require('razorpay')
-const { USER_CART, ORDER_DB, USER_DATA, ISSUES_DB } = require('../models/database')
+const { USER_CART } = require('../../models/UserCartModel')
+const { ORDER_DB } = require('../../models/UserOrderModel')
+const { USER_DATA } = require('../../models/UserAuthModel')
+const { ISSUES_DB } = require('../../models/IssueModel')
 const jwt = require('jsonwebtoken')
-const { sendOrderMail, sendIssueReported } = require('../services/mailer')
+const { sendOrderMail, sendIssueReported } = require('../../services/mailer')
 
 
 const razorpay = new Razorpay({

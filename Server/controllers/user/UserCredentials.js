@@ -1,5 +1,5 @@
  const mongoose = require('mongoose')
-const { USER_DATA } = require('../models/database')
+const { USER_DATA } = require('../../models/UserAuthModel')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
