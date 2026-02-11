@@ -5,42 +5,37 @@ require('dotenv').config()
 
 
 
-exports.authenticate_admin_portal= async (req,res) => {
-    const {email,password,adminKey} = req.body
+exports.authenticate_admin_portal = async (req, res) => {
+    const { email, password, adminKey } = req.body
     try {
-        const findAdmin = await ADMIN_DB.findOne({ADMIN_ID:adminKey,email:email})
-        if(!findAdmin) return res.json({status:404,message:'No Admin Found'})
-        if(findAdmin.password != password && findAdmin.ADMIN_ID != adminKey) return res.json({status:202,message:"error"})
-        
-        const adminToken = jwt.sign({adminID:adminKey,name:findAdmin.First_Name },process.env.JWT_KEY,{expiresIn:'1h'})
+        const findAdmin = await ADMIN_DB.findOne({ ADMIN_ID: adminKey, email: email })
+        if (!findAdmin) return res.json({ status: 404, message: 'No Admin Found' })
+        if (findAdmin.password != password && findAdmin.ADMIN_ID != adminKey) return res.json({ status: 202, message: "error" })
+
+        const adminToken = jwt.sign({ adminID: adminKey, name: findAdmin.First_Name }, process.env.JWT_KEY, { expiresIn: '1h' })
         console.log('logged in')
-        return res.json({status:200,token:adminToken,message:"Logged In"})
+        return res.json({ status: 200, token: adminToken, message: "Logged In" })
 
     } catch (error) {
         console.log(error)
+        return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
     }
 }
 
-// {
-//     "First_Name":"Pratik",
-//     "Last_Name":"Bhopi",
-//     "email":"pkbhopi132@gmail.com",
-//     "password":"pratik1234"
-// }
-
-exports.register_Admin = async (req,res)=>{
-    const {First_Name,Last_Name,email,password,mobile} = req.body
+exports.register_Admin = async (req, res) => {
+    const { First_Name, Last_Name, email, password, mobile } = req.body
     try {
         const adminID = '@aawaraEthincs2024'
         const createAdmin = await ADMIN_DB({
-            ...req.body,ADMIN_ID:"@aawaraEthincs2024",isAdmin:true
+            ...req.body, ADMIN_ID: "@aawaraEthincs2024", isAdmin: true
         })
         await createAdmin.save()
 
 
-        return res.json({status:200,message:'Success'})
-        
+        return res.json({ status: 200, message: 'Success' })
+
     } catch (error) {
-        console.log('register admin error',error)
+        console.log('register admin error', error)
+        return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
     }
 }

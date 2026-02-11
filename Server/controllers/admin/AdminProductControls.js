@@ -18,6 +18,7 @@ exports.getProducts = async (req, res) => {
 
     } catch (error) {
         console.log(error)
+        return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
     }
 }
 
@@ -33,22 +34,22 @@ exports.addProduct = async (req, res) => {
         const findAdmin = await ADMIN_DB.findOne({ ADMIN_ID: adminID, First_Name: name })
         if (!findAdmin) return res.json({ status: 404, message: 'Not Aurthorised' })
 
-        const findProduct = await PRODUCTS_DB.findOne({PRODUCT_id:req.body.PRODUCT_id})
+        const findProduct = await PRODUCTS_DB.findOne({ PRODUCT_id: req.body.PRODUCT_id })
 
-        if(findProduct){
-            return res.json({status:409,message:'already exist'})
+        if (findProduct) {
+            return res.json({ status: 409, message: 'already exist' })
         }
 
-        const addproduct = await PRODUCTS_DB({ ...req.body, Status: 'available', Product_img_url: `${imageurl}` ,uploaded_at:'Latest'})
+        const addproduct = await PRODUCTS_DB({ ...req.body, Status: 'available', Product_img_url: `${imageurl}`, uploaded_at: 'Latest' })
         await addproduct.save()
-        
-        await PRODUCTS_DB.updateOne({PRODUCT_id:req.body.PRODUCT_id},{
-            $set:{
-                Colors:[{
-                    img_url:imageurl,
-                    color:req.body.Product_Color,
-                    hexcode:req.body.Product_Hexcode,
-                    stocks:req.body.stocks
+
+        await PRODUCTS_DB.updateOne({ PRODUCT_id: req.body.PRODUCT_id }, {
+            $set: {
+                Colors: [{
+                    img_url: imageurl,
+                    color: req.body.Product_Color,
+                    hexcode: req.body.Product_Hexcode,
+                    stocks: req.body.stocks
                 }]
             }
         })
@@ -56,9 +57,8 @@ exports.addProduct = async (req, res) => {
         return res.json({ status: 200, message: 'Sucess' })
 
     } catch (error) {
-
         console.log(error)
-        return res.json({ status: 404, error: 'error' })
+        return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
     }
 }
 
@@ -68,50 +68,52 @@ exports.addColor = async (req, res) => {
     const imageurl = req.file.path;
 
     try {
-        const findp = await PRODUCTS_DB.findOne({PRODUCT_id:req.body.PRODUCT_id})
+        const findp = await PRODUCTS_DB.findOne({ PRODUCT_id: req.body.PRODUCT_id })
         // console.log(findp)
-        if(!findp) return res.json({status:404,message:'Product Does not exist'})
+        if (!findp) return res.json({ status: 404, message: 'Product Does not exist' })
 
         await PRODUCTS_DB.updateOne(
             { PRODUCT_id: req.body.PRODUCT_id },
             {
-              $push: {
-                Colors: {
-                  img_url: `${imageurl}`,
-                  color: req.body.color,
-                  hexcode: req.body.hexcode,
-                  stocks:req.body.stocks
+                $push: {
+                    Colors: {
+                        img_url: `${imageurl}`,
+                        color: req.body.color,
+                        hexcode: req.body.hexcode,
+                        stocks: req.body.stocks
+                    }
                 }
-              }
             }
-          );
+        );
 
-          return res.json({status:200,message:'Updated'})
-} catch (error) {
-    console.log(error)
+        return res.json({ status: 200, message: 'Updated' })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
+    }
 }
-}
 
 
-exports.updateProducts = async (req,res)=>{
-    const {values,id} = req.body
+exports.updateProducts = async (req, res) => {
+    const { values, id } = req.body
     // console.log(values,id)
 
     try {
-         await PRODUCTS_DB.updateOne({PRODUCT_id:id},{
-            $set:{
-                Product_name:values.product_name,
-                Price:values.price,
-                Discounted_Price:values.discounted_price
+        await PRODUCTS_DB.updateOne({ PRODUCT_id: id }, {
+            $set: {
+                Product_name: values.product_name,
+                Price: values.price,
+                Discounted_Price: values.discounted_price
             }
         })
 
-        return res.json({status:200})
+        return res.json({ status: 200 })
 
-        
 
-        
+
+
     } catch (error) {
-        
+        console.log(error)
+        return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
     }
 }

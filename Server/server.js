@@ -1,11 +1,12 @@
 const bodyParser = require('body-parser');
 const express = require('express')
 const mongoose = require('mongoose')
-const app = express()
+const app = express();
 const cors = require('cors');
 const path = require('path')
 require('dotenv').config()
 
+const status=require('express-status-monitor');
 const port = process.env.PORT || 3000
 
 
@@ -23,9 +24,10 @@ const UserContactRouter = require('./routes/user/UserContactRoutes');
 
 
 
-
+app.use(status());
 app.use(bodyParser.json());
 app.use(cors())
+
 app.use(express.json())
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -33,7 +35,6 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-
 
 
 app.use('/user',UserAuthRouter)
@@ -57,4 +58,4 @@ mongoose.connect(process.env.MONGODB_URL)
     })
     .catch((error) => {
         console.error('MongoDB connection error:', error);
-    });
+});

@@ -5,7 +5,7 @@ const { ADMIN_DB } = require('../../models/adminDB')
 const { ORDER_DB } = require('../../models/UserOrderModel')
 const { PRODUCTS_DB } = require('../../models/ProductModel')
 
-exports.getusersorders = async(req,res)=>{
+exports.getusersorders = async (req, res) => {
     const { token } = req.headers
     try {
         const { adminID, name } = jwt.verify(token, process.env.JWT_KEY)
@@ -20,49 +20,50 @@ exports.getusersorders = async(req,res)=>{
 
     } catch (error) {
         console.log(error)
+        return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
     }
 }
 
-exports.updateOrder = async (req,res)=>{
+exports.updateOrder = async (req, res) => {
     const { token } = req.headers
-    const {order_stat,orderid} = req.body
+    const { order_stat, orderid } = req.body
     try {
         const { adminID, name } = jwt.verify(token, process.env.JWT_KEY)
         const findAdmin = await ADMIN_DB.findOne({ ADMIN_ID: adminID, First_Name: name })
         if (!findAdmin) return res.json({ status: 404, message: 'Not Aurthorised' })
-        
-        await ORDER_DB.updateOne({USER_ORDER_ID:orderid},{
-            $set:{
-                orderStatus:order_stat
+
+        await ORDER_DB.updateOne({ USER_ORDER_ID: orderid }, {
+            $set: {
+                orderStatus: order_stat
             }
         })
-        
-        return res.json({status:200,message:'updated'})
-        
+
+        return res.json({ status: 200, message: 'updated' })
+
     } catch (error) {
         console.log(error)
-        return res.json({status:202})
+        return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
     }
 }
 
-exports.updateStocks = async (req,res)=>{
+exports.updateStocks = async (req, res) => {
     const { token } = req.headers
 
     try {
         const { adminID, name } = jwt.verify(token, process.env.JWT_KEY)
         const findAdmin = await ADMIN_DB.findOne({ ADMIN_ID: adminID, First_Name: name })
         if (!findAdmin) return res.json({ status: 404, message: 'Not Aurthorised' })
-        
-       await PRODUCTS_DB.updateOne({PRODUCT_id:req.body.productid},{
-        $set:{
-            outofstock:req.body.outofstock
-        }
-       })
-        
-        return res.json({status:200,message:'updated'})
-        
+
+        await PRODUCTS_DB.updateOne({ PRODUCT_id: req.body.productid }, {
+            $set: {
+                outofstock: req.body.outofstock
+            }
+        })
+
+        return res.json({ status: 200, message: 'updated' })
+
     } catch (error) {
         console.log(error)
-        return res.json({status:202})
+        return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
     }
 }
