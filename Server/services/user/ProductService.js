@@ -147,9 +147,40 @@ exports.getCartProducts = async (userId) => {
     return { status: 200, cartProducts: findCart }
 }
 
-exports.getProducts = async () => {
-    const products = await PRODUCTS_DB.find({})
-    return { products: products, status: 200 }
+exports.getProducts = async ({ page = 1, limit = 12, search = '', sort = 'All' } = {}) => {
+    let query = {};
+    if (search) {
+        query.$or = [
+            { Product_name: { $regex: search, $options: 'i' } },
+            { Description: { $regex: search, $options: 'i' } },
+            { PRODUCT_id: { $regex: search, $options: 'i' } }
+        ];
+    }
+
+    if (sort === 'Latest') {
+        query.uploaded_at = 'Latest';
+    }
+
+    let sortObj = {};
+    if (sort === 'hightolow') {
+        sortObj.Discounted_Price = -1;
+    } else if (sort === 'lowtohigh') {
+        sortObj.Discounted_Price = 1;
+    }
+
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+    const limitNum = parseInt(limit);
+
+    const products = await PRODUCTS_DB.find(query).sort(sortObj).skip(skip).limit(limitNum);
+    const totalProducts = await PRODUCTS_DB.countDocuments(query);
+
+    return { 
+        products: products, 
+        totalPages: Math.ceil(totalProducts / limitNum),
+        currentPage: parseInt(page),
+        totalProducts,
+        status: 200 
+    };
 }
 
 exports.getProductToBuy = async (params_productID) => {

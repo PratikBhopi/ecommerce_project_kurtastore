@@ -6,7 +6,6 @@ const USER_LOGIN_DATA = new mongoose.Schema({
     Mobile_No: Number,
     email: String,
     password: String,
-
 },
     {
         collection: 'USER_DATA'

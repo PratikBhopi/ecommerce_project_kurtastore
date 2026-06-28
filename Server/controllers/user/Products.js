@@ -39,7 +39,8 @@ exports.getCartProducts = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
     try {
-        const result = await ProductService.getProducts()
+        const { page, limit, search, sort } = req.query;
+        const result = await ProductService.getProducts({ page, limit, search, sort })
         return res.json(result)
     } catch (error) {
         console.log(error)

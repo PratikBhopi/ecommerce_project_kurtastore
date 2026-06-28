@@ -5,8 +5,12 @@ const app = express();
 const cors = require('cors');
 const path = require('path')
 require('dotenv').config()
+const { connectRedis } = require('./config/redis');
 
-const status=require('express-status-monitor');
+// Connect to Redis
+connectRedis();
+
+const status = require('express-status-monitor');
 const port = process.env.PORT || 3000
 
 
@@ -17,11 +21,11 @@ const AdminUserRouter = require('./routes/admin/AdminUserRoutes');
 
 const UserAuthRouter = require('./routes/user/UserAuthRoutes');
 const UserCartRouter = require('./routes/user/UserCartRoutes');
-const UserProductRouter = require('./routes/user/UserProductRoutes');
 const UserOrderPaymentRouter = require('./routes/user/UserOrderPaymentRoutes');
 const UserOTPRouter = require('./routes/user/UserOTPRoutes');
 const UserContactRouter = require('./routes/user/UserContactRoutes');
 
+const ProductsRouter = require('./routes/user/ProductsRoutes');
 
 
 app.use(status());
@@ -33,16 +37,17 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+    res.send('Hello World!')
 })
 
 
-app.use('/user',UserAuthRouter)
-app.use('/user',UserCartRouter)
-app.use('/user',UserProductRouter)
-app.use('/user',UserOrderPaymentRouter)
-app.use('/user',UserOTPRouter)
-app.use('/user',UserContactRouter)
+app.use('/store', ProductsRouter)
+
+app.use('/user', UserAuthRouter)
+app.use('/user', UserCartRouter)
+app.use('/user', UserOrderPaymentRouter)
+app.use('/user', UserOTPRouter)
+app.use('/user', UserContactRouter)
 
 app.use('/admin', AdminAuthRouter)
 app.use('/admin', AdminProductRouter)
@@ -58,4 +63,4 @@ mongoose.connect(process.env.MONGODB_URL)
     })
     .catch((error) => {
         console.error('MongoDB connection error:', error);
-});
+    });
