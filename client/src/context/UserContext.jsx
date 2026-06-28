@@ -14,8 +14,8 @@ export const UserContextProvider = ({ children }) => {
     const checkUser = async () => {
         const token = localStorage.getItem('token')
         try {
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/authorization`, {
-                method: 'POST',
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/auth/status`, {
+                method: 'GET',
                 headers: {
                     token: localStorage.getItem('token')
                 }
@@ -35,7 +35,7 @@ export const UserContextProvider = ({ children }) => {
     const getPosts = async () => {
       setHomeani(true)
         try {
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/getProducts`)
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/products`)
             const data = await response.json()
             setItemsData(data.products)
             setHomeani(false);
@@ -61,7 +61,7 @@ export const UserContextProvider = ({ children }) => {
   
     const getCartProduct = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/getCartProduct`, {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/cart`, {
           method: 'GET',
           headers: {
             'Content-type': 'Application/json',

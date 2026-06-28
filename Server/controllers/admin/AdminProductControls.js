@@ -1,117 +1,41 @@
-require('dotenv').config()
-
-const jwt = require('jsonwebtoken')
-const { ADMIN_DB } = require('../../models/adminDB')
-const { PRODUCTS_DB } = require('../../models/ProductModel')
+const AdminProductService = require('../../services/admin/AdminProductService')
 
 exports.getProducts = async (req, res) => {
-    const { token } = req.headers
     try {
-        const { adminID, name } = jwt.verify(token, process.env.JWT_KEY)
-        const findAdmin = await ADMIN_DB.findOne({ ADMIN_ID: adminID, First_Name: name })
-        if (!findAdmin) return res.json({ status: 404, message: 'Not Aurthorised' })
-
-        const allProducts = await PRODUCTS_DB.find({})
-
-        return res.json({ status: 200, Products: allProducts })
-
-
+        const result = await AdminProductService.getProducts()
+        return res.json(result)
     } catch (error) {
         console.log(error)
         return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
     }
 }
-
-
 
 exports.addProduct = async (req, res) => {
-
     const imageurl = req.file.path;
-    const { token } = req.headers
-
     try {
-        const { adminID, name } = jwt.verify(token, process.env.JWT_KEY)
-        const findAdmin = await ADMIN_DB.findOne({ ADMIN_ID: adminID, First_Name: name })
-        if (!findAdmin) return res.json({ status: 404, message: 'Not Aurthorised' })
-
-        const findProduct = await PRODUCTS_DB.findOne({ PRODUCT_id: req.body.PRODUCT_id })
-
-        if (findProduct) {
-            return res.json({ status: 409, message: 'already exist' })
-        }
-
-        const addproduct = await PRODUCTS_DB({ ...req.body, Status: 'available', Product_img_url: `${imageurl}`, uploaded_at: 'Latest' })
-        await addproduct.save()
-
-        await PRODUCTS_DB.updateOne({ PRODUCT_id: req.body.PRODUCT_id }, {
-            $set: {
-                Colors: [{
-                    img_url: imageurl,
-                    color: req.body.Product_Color,
-                    hexcode: req.body.Product_Hexcode,
-                    stocks: req.body.stocks
-                }]
-            }
-        })
-
-        return res.json({ status: 200, message: 'Sucess' })
-
+        const result = await AdminProductService.addProduct(req.body, imageurl)
+        return res.json(result)
     } catch (error) {
         console.log(error)
         return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
     }
 }
-
 
 exports.addColor = async (req, res) => {
-
     const imageurl = req.file.path;
-
     try {
-        const findp = await PRODUCTS_DB.findOne({ PRODUCT_id: req.body.PRODUCT_id })
-        // console.log(findp)
-        if (!findp) return res.json({ status: 404, message: 'Product Does not exist' })
-
-        await PRODUCTS_DB.updateOne(
-            { PRODUCT_id: req.body.PRODUCT_id },
-            {
-                $push: {
-                    Colors: {
-                        img_url: `${imageurl}`,
-                        color: req.body.color,
-                        hexcode: req.body.hexcode,
-                        stocks: req.body.stocks
-                    }
-                }
-            }
-        );
-
-        return res.json({ status: 200, message: 'Updated' })
+        const result = await AdminProductService.addColor(req.body, imageurl)
+        return res.json(result)
     } catch (error) {
         console.log(error)
         return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
     }
 }
 
-
 exports.updateProducts = async (req, res) => {
-    const { values, id } = req.body
-    // console.log(values,id)
-
     try {
-        await PRODUCTS_DB.updateOne({ PRODUCT_id: id }, {
-            $set: {
-                Product_name: values.product_name,
-                Price: values.price,
-                Discounted_Price: values.discounted_price
-            }
-        })
-
-        return res.json({ status: 200 })
-
-
-
-
+        const result = await AdminProductService.updateProducts(req.body)
+        return res.json(result)
     } catch (error) {
         console.log(error)
         return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })

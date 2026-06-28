@@ -11,7 +11,7 @@ const Login = () => {
     const searchadmin = async ({email,password,adminKey})=>{
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/authenticationadmin`,{
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/auth/login`,{
                 method:'POST',
                 headers:{'Content-type':'Application/json'},
                 body:JSON.stringify({email,password,adminKey})

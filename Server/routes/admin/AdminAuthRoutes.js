@@ -3,7 +3,7 @@ const { authenticate_admin_portal, register_Admin } = require('../../controllers
 
 const AdminAuthRouter = express.Router()
 
-AdminAuthRouter.post('/authenticationadmin',authenticate_admin_portal)
-AdminAuthRouter.post('/register_admin',register_Admin)
+AdminAuthRouter.post('/auth/login', authenticate_admin_portal)
+AdminAuthRouter.post('/auth/register', register_Admin)
 
 module.exports = AdminAuthRouter

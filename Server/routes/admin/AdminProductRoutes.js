@@ -4,6 +4,7 @@ const { updateStocks } = require('../../controllers/admin/AdminOrderControls')
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer')
+const { adminAuth } = require('../../middlewares/adminAuth')
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -31,14 +32,14 @@ const upload = multer({storage})
 const AdminProductRouter = express.Router()
 
 //get products:
-AdminProductRouter.get('/getProduct',getProducts)
+AdminProductRouter.get('/products', adminAuth, getProducts)
 
 //edit product
-AdminProductRouter.post('/updateProduct',updateProducts)
+AdminProductRouter.put('/products', adminAuth, updateProducts)
 
 //add products
-AdminProductRouter.post('/addproduct',upload.single('image'),addProduct)
-AdminProductRouter.post('/addcolor',upload.single('image'),addColor)
-AdminProductRouter.post('/updateStock',updateStocks)
+AdminProductRouter.post('/products', adminAuth, upload.single('image'), addProduct)
+AdminProductRouter.post('/products/colors', adminAuth, upload.single('image'), addColor)
+AdminProductRouter.put('/products/stock', adminAuth, updateStocks)
 
 module.exports = AdminProductRouter

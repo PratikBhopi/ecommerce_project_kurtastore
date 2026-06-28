@@ -15,8 +15,8 @@ const CartCardBlock = ({ productsdata, getCartProduct }) => {
     setIsPortalOpen(true)
     try {
       const product_item_id = productsdata.product_id+'-'+productsdata.Size+'-'+productsdata.Color
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/updateCart`, {
-        method: 'POST',
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/cart`, {
+        method: 'PUT',
         headers: {
           'Content-type': 'Application/json',
           token: localStorage.getItem('token')
@@ -38,7 +38,7 @@ const CartCardBlock = ({ productsdata, getCartProduct }) => {
     setIsPortalOpen(true)
    const encodedColor = encodeURIComponent(productid); // Example color hex code
 
-    const url = `${import.meta.env.VITE_SERVER_URL}/user/deleteCartItem/${encodedColor}`
+    const url = `${import.meta.env.VITE_SERVER_URL}/user/cart/${encodedColor}`
     // console.log(url)
     try {
       const response = await fetch(url,{

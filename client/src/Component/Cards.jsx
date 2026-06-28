@@ -42,7 +42,7 @@ const Cards = ({ productsdata}) => {
     
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/addtoCart`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/cart`, {
         method: 'POST',
         headers: {
           'Content-type': 'Application/json',
@@ -71,7 +71,7 @@ const Cards = ({ productsdata}) => {
     
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/addtoCart`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/cart`, {
         method: 'POST',
         headers: {
           'Content-type': 'Application/json',

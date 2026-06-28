@@ -29,7 +29,7 @@ const Pay = ({cartItems,cartTotalPrice,CARTID ,off}) => {
             return;
         }
 
-        const result = await axios.post(`${import.meta.env.VITE_SERVER_URL}/user/createOrder`, { totalprice,CARTID });
+        const result = await axios.post(`${import.meta.env.VITE_SERVER_URL}/user/payments/order`, { totalprice,CARTID });
 
         if (!result) {
             alert('Server error. Are you online?');
@@ -54,7 +54,7 @@ const Pay = ({cartItems,cartTotalPrice,CARTID ,off}) => {
                 sign:response.razorpay_signature,
                 cartID:CARTID
                 }
-            const result = await axios.post(`${import.meta.env.VITE_SERVER_URL}/user/payment-success`,data)
+            const result = await axios.post(`${import.meta.env.VITE_SERVER_URL}/user/payments/success`,data)
             if(result.data.success){
                 sessionStorage.removeItem('#verifieditems')
                 sessionStorage.removeItem('#verifieddet')

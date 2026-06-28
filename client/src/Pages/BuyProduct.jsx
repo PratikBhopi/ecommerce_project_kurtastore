@@ -28,7 +28,7 @@ const BuyProduct = () => {
   const fetchProductData = async (id) => {
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/fetchProducttoBuy/` + id, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/products/` + id, {
         method: 'GET',
         headers: {
           'Content-type': 'Application/json',
@@ -50,7 +50,7 @@ const BuyProduct = () => {
   const addtoCart = async (productid, size, activeIn, productimg) => {
     if (!isLoggedIn) return toast('Kindly Login')
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/addtoCart`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/cart`, {
         method: 'POST',
         headers: {
           'Content-type': 'Application/json',

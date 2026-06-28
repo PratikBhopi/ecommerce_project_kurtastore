@@ -11,8 +11,8 @@ const EditProduct = ({ item, setPortal, openPortal, getProducts }) => {
   const updateProduct = async (values) => {
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/updateProduct`, {
-        method: 'POST',
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/products`, {
+        method: 'PUT',
         headers: {
           'Content-type': 'Application/json',
           'token': sessionStorage.getItem('token')
@@ -34,8 +34,8 @@ const EditProduct = ({ item, setPortal, openPortal, getProducts }) => {
   const updateStock = async(values)=>{
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/updateStock`,{
-        method:'POST',
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/products/stock`,{
+        method:'PUT',
         headers:{
           'Content-type':'Application/json',
           token:sessionStorage.getItem('token')

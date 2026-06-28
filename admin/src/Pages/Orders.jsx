@@ -18,7 +18,7 @@ const Orders = () => {
     const findOrders = async () => {
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/getorders`, {
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/orders`, {
                 method: 'GET',
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -39,8 +39,8 @@ const Orders = () => {
     const updateOrder= async(values,orderid)=>{
 
         try {
-            const reponse = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/updateOrder`,{
-                method:'POST',
+            const reponse = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/orders`,{
+                method:'PUT',
                 headers:{
                     'Content-type':'Application/json',
                     token:sessionStorage.getItem('token')

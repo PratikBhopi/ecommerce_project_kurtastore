@@ -1,23 +1,9 @@
-require('dotenv').config()
-
-const jwt = require('jsonwebtoken')
-const { ADMIN_DB } = require('../../models/adminDB')
-const { ORDER_DB } = require('../../models/UserOrderModel')
-const { PRODUCTS_DB } = require('../../models/ProductModel')
+const AdminOrderService = require('../../services/admin/AdminOrderService')
 
 exports.getusersorders = async (req, res) => {
-    const { token } = req.headers
     try {
-        const { adminID, name } = jwt.verify(token, process.env.JWT_KEY)
-        const findAdmin = await ADMIN_DB.findOne({ ADMIN_ID: adminID, First_Name: name })
-        if (!findAdmin) return res.json({ status: 404, message: 'Not Aurthorised' })
-
-        const allProducts = await ORDER_DB.find({})
-        // console.log(allProducts)
-
-        return res.json({ status: 200, Products: allProducts })
-
-
+        const result = await AdminOrderService.getusersorders()
+        return res.json(result)
     } catch (error) {
         console.log(error)
         return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
@@ -25,21 +11,9 @@ exports.getusersorders = async (req, res) => {
 }
 
 exports.updateOrder = async (req, res) => {
-    const { token } = req.headers
-    const { order_stat, orderid } = req.body
     try {
-        const { adminID, name } = jwt.verify(token, process.env.JWT_KEY)
-        const findAdmin = await ADMIN_DB.findOne({ ADMIN_ID: adminID, First_Name: name })
-        if (!findAdmin) return res.json({ status: 404, message: 'Not Aurthorised' })
-
-        await ORDER_DB.updateOne({ USER_ORDER_ID: orderid }, {
-            $set: {
-                orderStatus: order_stat
-            }
-        })
-
-        return res.json({ status: 200, message: 'updated' })
-
+        const result = await AdminOrderService.updateOrder(req.body)
+        return res.json(result)
     } catch (error) {
         console.log(error)
         return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })
@@ -47,21 +21,9 @@ exports.updateOrder = async (req, res) => {
 }
 
 exports.updateStocks = async (req, res) => {
-    const { token } = req.headers
-
     try {
-        const { adminID, name } = jwt.verify(token, process.env.JWT_KEY)
-        const findAdmin = await ADMIN_DB.findOne({ ADMIN_ID: adminID, First_Name: name })
-        if (!findAdmin) return res.json({ status: 404, message: 'Not Aurthorised' })
-
-        await PRODUCTS_DB.updateOne({ PRODUCT_id: req.body.productid }, {
-            $set: {
-                outofstock: req.body.outofstock
-            }
-        })
-
-        return res.json({ status: 200, message: 'updated' })
-
+        const result = await AdminOrderService.updateStocks(req.body)
+        return res.json(result)
     } catch (error) {
         console.log(error)
         return res.status(500).json({ status: 500, error: 'Internal Server Error', message: error.message })

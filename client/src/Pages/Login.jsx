@@ -14,7 +14,7 @@ const Login = () => {
 
   const handleLogin=async({email,password})=>{
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/login`,{
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/auth/login`,{
         method:'POST',
         headers:{
           'Content-type':'application/json',

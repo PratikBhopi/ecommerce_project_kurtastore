@@ -55,7 +55,7 @@ const Checkout = () => {
 
   const getCartProduct = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/getCartProduct`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/cart`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -79,7 +79,7 @@ const Checkout = () => {
 
   const getOtp = async ({ email, mobile }) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/requestotp`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/otp/request`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
@@ -111,7 +111,7 @@ const Checkout = () => {
   const checkOtp = async ({ otp }) => {
     try {
       console.log(otp)
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/checkotp`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/otp/verify`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
@@ -141,7 +141,7 @@ const Checkout = () => {
 
     saveFormData(formKey1, values)
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/submitOrderDetails`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/orders`, {
         method: 'POST',
         headers: {
           'Content-type': 'Application/json',

@@ -21,7 +21,7 @@ const AddProducts = () => {
         formData.append('image', values.image);
         // console.log(formData)
         try {
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/addproduct`, {
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/products`, {
                 method: 'POST',
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -51,7 +51,7 @@ const AddProducts = () => {
 
         console.log(formData)
         try {
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/addcolor`,{
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/products/colors`,{
                 method:'POST',
                 body:formData
             })

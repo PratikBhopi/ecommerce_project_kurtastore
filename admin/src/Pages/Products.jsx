@@ -9,7 +9,7 @@ const Products = () => {
 
     const getProducts = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/getProduct`, {
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/products`, {
                 method: "GET",
                 headers: {
                     token: sessionStorage.getItem('token')
