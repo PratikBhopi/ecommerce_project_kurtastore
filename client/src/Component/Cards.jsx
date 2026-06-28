@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useReducer, useRef, useState } from 'react'
-import { UserContextApi } from '../context/UserContext'
+import useAuthStore from '../store/useAuthStore';
+import useCartStore from '../store/useCartStore';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,7 +18,8 @@ const Cards = ({ productsdata}) => {
 
 
   const navigate = useNavigate()
-  const { isLoggedIn, setLoggedIn, getCartProduct } = useContext(UserContextApi)
+  const { isLoggedIn, setLoggedIn } = useAuthStore();
+  const getCartProduct = useCartStore((state) => state.getCartProduct);
   const [size, setSize] = useState('')
 
   const [isPortalOpen, setIsPortalOpen] = useState(false);
@@ -108,52 +110,60 @@ const Cards = ({ productsdata}) => {
 
   return (
     <>
-      <div className='f:w-[300px] relative  s:w-[270px]   sl:w-[220px] ss:w-[190px] w-[160px]  flex justify-center items-center flex-col'>
+      <div className='group product-card-hover transition-all duration-500 p-2 sm:p-4 cursor-pointer w-full' onClick={() => buyProduct(productsdata.PRODUCT_id)}>
         <ToastContainer newestOnTop={true} autoClose={1000}
           toastStyle={{ backgroundColor: "white", color: "black" }} hideProgressBar={true} />
-        <div className='f:w-[300px] f:h-[448px] s:w-[270px] s:h-[404px] sl:w-[220px] sl:h-[328px] border  border-b-0 border-[#2323233c] ss:w-[190px] ss:h-[280px] w-[160px] h-[240px] rounded-[0px]  overflow-hidden relative'>
-          {/* <div className='bg-[#1D0100]  ss:flex justify-center  text-white  absolute right-1 top-1 ss:right-2 ss:top-2  z-[99]  rounded-[6px]   text-[10px] ss:text-[13px] py-3 px-2 ss:w-[14%] cursor-pointer' onClick={() => { isLoggedIn ? addtoCart(productsdata.PRODUCT_id, size, productsdata.Product_img_url) : addtoStorage()}}><FaBagShopping className='scale-[1.2]' /></div> */}
-          <div className='bg-[#1D0100]  ss:flex justify-center  text-white  absolute right-1 top-1 ss:right-2 ss:top-2  z-[99]  rounded-[6px]   text-[10px] ss:text-[13px] py-3 px-2 ss:w-[14%] cursor-pointer' onClick={() => {  addtoCart(productsdata.PRODUCT_id, size, productsdata.Product_img_url) }}><FaBagShopping className='scale-[1.2]' /></div>
-          <img  className='w-full bg-stone-200 hover:scale-[1.01] transition-all ease-out duration-[0.9s] h-full z-50  ' src={productsdata.Product_img_url} alt='Network!!' />
-          <div onClick={()=>buyProduct(productsdata.PRODUCT_id)} className='absolute cursor-pointer bottom-2 w-full   px-3 '>
-            <div ref={cols} className='w-full text-end bg-[#ffffff4a] rounded-full backdrop-blur-sm px-1 py-1  ss:px-2 ss:py-2 relative'>
-            
-            {   
-              productsdata.Colors.map((color,index)=>{  
-                return <div key={color.hexcode} style={{backgroundColor:`${color.hexcode}`,zIndex:index,left:index*18+4+'px'}} className={`ss:w-7  w-6 opacity-[1]    top-1/2 -translate-y-1/2 ss:h-7 h-6  absolute inset-0  rounded-full`}></div>
-              })
-            }
-            <div   className='ss:text-[15px] text-[13px] font-[700] text-[#1D0100]'>{ productsdata.Colors.length-1 == 0 ? 'see more..': `+${productsdata.Colors.length} colors`} </div>
-            </div>
+        
+        <div className='relative overflow-hidden aspect-[3/4] mb-4 sm:mb-6 gold-border'>
+          <img 
+            className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-105' 
+            src={productsdata.Product_img_url} 
+            alt={productsdata.Description} 
+          />
+          
+          <div className='absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 sm:p-6'>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation(); // prevent navigating to product page when adding to cart
+                addtoCart(productsdata.PRODUCT_id, size, productsdata.Product_img_url);
+              }}
+              className='w-full bg-primary text-on-primary py-3 sm:py-4 text-label-sm uppercase tracking-widest font-bold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300'
+            >
+              Add to Bag
+            </button>
+          </div>
+          
+          {/* Colors Tag */}
+          <div className='absolute top-3 left-3 flex gap-1'>
+            {productsdata.Colors.slice(0, 3).map((color, index) => (
+              <div 
+                key={color.hexcode} 
+                style={{backgroundColor: color.hexcode}} 
+                className='w-3 h-3 sm:w-4 sm:h-4 rounded-full border border-white/50 shadow-sm'
+              ></div>
+            ))}
+            {productsdata.Colors.length > 3 && (
+              <div className='text-[10px] bg-white/80 px-1 rounded-sm text-primary font-bold ml-1'>
+                +{productsdata.Colors.length - 3}
+              </div>
+            )}
           </div>
         </div>
-        <div className='w-full  text-[11px] px-[4px] text-black flex flex-col justify-center items-center  ss:text-[16px]   '>
-          <div className='uppercase ss:font-[700] opacity-[0.7]  font-[800]'>Karma Threads </div>
-          <div className='uppercase  text-center w-full whitespace-nowrap truncate  text-[12px] text-[#b0b0b0] font-[300]'>{productsdata.Description}</div>
-          <div className=' flex gap-1 items-center'>
-            <div className=' line-through ss:text-[15px] text-red-600 text-[12px] opacity-[0.6]'> ₹ {productsdata.Price}</div>
-            <div className=' ss:text-[17px] text-[15px] font-[600]'>₹ { productsdata.Discounted_Price}/-</div>
-          </div>
 
-
-          <div className='my-2 w-full  ss:justify-center hidden  ss:flex gap-1'>
-            {
-              [{ XS: 34 }, { S: 36 }, { M: 38 }, { L: 40 }, { XL: 42 }, { XXL: 44 }].map((item, index) => {
-                const brandSize = Object.keys(item)[0]; // Get the key from the object
-                const value = item[brandSize]; // Get the value from the object
-                return (
-                  <div onClick={() => setSize(brandSize)} key={value} style={{ backgroundColor: size == brandSize ? 'rgb(78 78 78 / 48%)' : 'transparent' }} className='py-1 px-2 rounded-full  cursor-pointer text-center border border-stone-300 ss:text-[11px]  text-[7px] uppercase'>{brandSize}</div>
-                );
-              })
-            }
+        <div className='text-center px-1'>
+          <p className='text-[10px] sm:text-label-sm uppercase tracking-widest text-outline mb-1 truncate'>
+            Karma Threads
+          </p>
+          <h3 className='font-title-md text-[14px] sm:text-title-md text-primary mb-1 sm:mb-2 truncate'>
+            {productsdata.Description}
+          </h3>
+          <div className='flex items-center justify-center gap-2'>
+             <p className='font-body-md text-[12px] sm:text-body-md text-secondary'>₹ {productsdata.Discounted_Price}</p>
+             <p className='text-[10px] sm:text-[12px] text-outline line-through'>₹ {productsdata.Price}</p>
           </div>
         </div>
-        <div className='flex  justify-between mt-1 w-full '>
-          <div className='bg-[#1D0100] border text-center text-white  px-2 text-[15px] ss:text-[18px] py-[6px] w-full  cursor-pointer  bttn ' onClick={() => buyProduct(productsdata.PRODUCT_id)} >Buy </div>
-        </div>
-        {
-          isPortalOpen ? <CartAnimation  /> : ''
-        }
+
+        {isPortalOpen ? <CartAnimation /> : null}
       </div>
     </>
   )

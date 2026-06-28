@@ -5,12 +5,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { UserContextApi } from '../context/UserContext';
+import useAuthStore from '../store/useAuthStore';
 
 const Login = () => {
   const navigate = useNavigate()
 
-  const {setLoggedIn,isLoggedIn} = useContext(UserContextApi)
+  const setLoggedIn = useAuthStore((state) => state.setLoggedIn)
 
   const handleLogin=async({email,password})=>{
     try {

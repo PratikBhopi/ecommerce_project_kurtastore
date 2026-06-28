@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import '../src/App.css'
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Home from './Pages/Home';
+import useAuthStore from './store/useAuthStore';
+import useProductStore from './store/useProductStore';
+import useCartStore from './store/useCartStore';
+import useHomeStore from './store/useHomeStore';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -100,6 +104,19 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
+  const checkUser = useAuthStore(state => state.checkUser)
+  const isLoggedIn = useAuthStore(state => state.isLoggedIn)
+  const getPosts = useProductStore(state => state.getPosts)
+  const getHomePosts = useHomeStore(state => state.getHomePosts)
+  const getCartProduct = useCartStore(state => state.getCartProduct)
+
+  useEffect(() => {
+    getPosts()
+    getHomePosts()
+    checkUser()
+    getCartProduct()
+  }, [isLoggedIn])
+
   return (
     <>
     <RouterProvider router={router} />

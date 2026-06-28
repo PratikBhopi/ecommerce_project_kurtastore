@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MdOutlineCancel } from "react-icons/md";
-import { UserContextApi } from '../context/UserContext';
+
 import CartAnimation from './CarAnimation';
 
 const CartCardBlock = ({ productsdata, getCartProduct }) => {
 
-  // const {getCartLength} = useContext(UserContextApi)
+
   const [isPortalOpen, setIsPortalOpen] = useState(false);
 
   const [quantityCount, setQuantityCount] = useState(productsdata.Quantity);

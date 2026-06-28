@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Header from '../Component/Header'
-import { UserContextApi } from '../context/UserContext'
+import useAuthStore from '../store/useAuthStore'
 import { Link } from 'react-router-dom'
 import { TfiPackage } from "react-icons/tfi";
 import { LiaShippingFastSolid } from "react-icons/lia";
@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Orders = () => {
 
-    const { isLoggedIn } = useContext(UserContextApi)
+    const isLoggedIn = useAuthStore((state) => state.isLoggedIn)
     const [allOrders, setAllOrders] = useState([])
 
     const findOrders = async () => {

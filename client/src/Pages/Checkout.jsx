@@ -5,14 +5,14 @@ import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Pay from '../Component/Pay';
-import { UserContextApi } from '../context/UserContext';
+
 import { useNavigate } from 'react-router-dom';
 import States from '../../../admin/src/addressData';
 
 
 const Checkout = () => {
   const navigate = useNavigate()
-  // const { isLoggedIn } = useContext(UserContextApi)
+
 
   const formKey1 = 'form1Data';
   const formKey2 = 'form2Data';

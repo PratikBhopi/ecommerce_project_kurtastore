@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Header from '../Component/Header';
 import CartCardBlock from '../Component/CartCardBlock';
-import { UserContextApi } from '../context/UserContext';
+import useAuthStore from '../store/useAuthStore';
+import useCartStore from '../store/useCartStore';
 import Footer from '../Component/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdSettingsPhone } from 'react-icons/md';
@@ -11,7 +12,8 @@ const Cart = () => {
 
   const navigate = useNavigate()
 
-  const { isLoggedIn, totalCartItems, cartTotalPrice, cartItems, getCartProduct } = useContext(UserContextApi);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const { totalCartItems, cartTotalPrice, cartItems, getCartProduct } = useCartStore();
 
 
   const UserCheckout = () => {

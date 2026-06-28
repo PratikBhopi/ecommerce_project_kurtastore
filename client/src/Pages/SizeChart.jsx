@@ -1,11 +1,9 @@
-import React, { useContext } from 'react'
-
-import { UserContextApi } from '../context/UserContext';
+import useUIStore from '../store/useUIStore';
 import { MdCancel } from "react-icons/md";
 
 const SizeChart = () => {
 
-  const {isOpen,onClose} = useContext(UserContextApi)
+  const {isOpen,onClose} = useUIStore()
   return (
     <> 
       <div className='absolute w-screen h-screen  z-[9999] flex justify-center items-center bg-[white] top-[23%] left-1/2 -translate-x-1/2 -translate-y-1/2'>
