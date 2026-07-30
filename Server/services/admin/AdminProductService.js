@@ -1,4 +1,5 @@
 const { PRODUCTS_DB } = require('../../models/ProductModel')
+const { invalidateProductCache } = require('../../cache/ProductCache')
 
 exports.getProducts = async () => {
     const allProducts = await PRODUCTS_DB.find({})
@@ -25,6 +26,8 @@ exports.addProduct = async (productData, imageurl) => {
         }
     })
 
+    await invalidateProductCache();
+
     return { status: 200, message: 'Sucess' }
 }
 
@@ -46,6 +49,8 @@ exports.addColor = async (productData, imageurl) => {
         }
     );
 
+    await invalidateProductCache();
+
     return { status: 200, message: 'Updated' }
 }
 
@@ -57,5 +62,8 @@ exports.updateProducts = async ({ values, id }) => {
             Discounted_Price: values.discounted_price
         }
     })
+
+    await invalidateProductCache();
+
     return { status: 200 }
 }
